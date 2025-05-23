@@ -9,9 +9,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(targets = "net.minecraft.world.gen.feature.PortalShape")
 public abstract class PortalShapeMixin {
-
     @Redirect(
-        method = "method_30485", // Yarn-mapped name for frame validation (update if needed)
+        method = "method_30485", 
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"
