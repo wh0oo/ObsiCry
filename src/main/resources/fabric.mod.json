@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "ObsiCry",
   "description": "Allows Nether portals to be built with crying obsidian.",
-  "authors": ["YourName"],
+  "authors": "wh0oo",
   "contact": {
     "homepage": "https://github.com/wh0oo/ObsiCry",
     "issues": "https://github.com/wh0oo/ObsiCry/issues"
