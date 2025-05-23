@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "net.minecraft.world.gen.feature.PortalShape")
+@Mixin(targets = "net.minecraft.world.level.portal.PortalShape")
 public abstract class PortalShapeMixin {
     @Redirect(
         method = "method_30485", 
