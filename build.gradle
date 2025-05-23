@@ -7,38 +7,32 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+    archivesName = 'obsicry'  // Hardcoded to avoid template variables
 }
 
 repositories {
     // Add repositories for other mod dependencies here
-    // Example: modImplementation "curse.maven:modid-123456:file-1234567"
 }
 
 loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "obsicry" {  // Changed from "modid" to match your fabric.mod.json
+        "obsicry" {
             sourceSet sourceSets.main
-            // Removed client sourceSet (not needed for pure Mixin mods)
         }
     }
 }
 
 dependencies {
-    // Core Minecraft/Fabric dependencies (versions from gradle.properties)
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    // Fabric API (optional but recommended)
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
     inputs.property "version", project.version
-
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
@@ -60,10 +54,10 @@ jar {
     }
 }
 
-// Publishing configuration (safe to leave as-is)
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            artifactId = 'obsicry'  // Hardcoded for consistency
             from components.java
         }
     }
