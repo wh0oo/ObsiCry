@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "com.example.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["PortalShapeMixin"],
+  "injectors": { "defaultRequire": 1 }
+}
