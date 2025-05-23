@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = obsicry
+    archivesName = project.archives_base_name  // Use the property from gradle.properties
 }
 
 repositories {
@@ -18,25 +18,21 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "obsicry" {
+        create("obsicry") {  // Explicitly create the mod configuration
             sourceSet sourceSets.main
         }
     }
 }
 
 dependencies {
-    // Core dependencies
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    
-    // Fabric API (optional - remove if not needed)
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
     inputs.property "version", project.version
-
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
@@ -61,10 +57,11 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            artifactId = project.archives_base_name
             from components.java
         }
     }
     repositories {
-        // Add Maven publishing repositories if needed
+        // Add Maven publishing targets if needed
     }
 }
