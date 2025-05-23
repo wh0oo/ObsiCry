@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "net.minecraft.world.level.portal.PortalShape")
+@Mixin(targets = "net.minecraft.world.portal.PortalShape")
 public abstract class PortalShapeMixin {
     @Redirect(
-        method = "method_30485", 
+        method = "isValidFrameBlock", // Updated method name for 1.21.5
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"
