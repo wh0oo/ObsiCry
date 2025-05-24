@@ -7,13 +7,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "net.minecraft.class_5819$class_5820") // Target the inner implementation class
+@Mixin(targets = "net.minecraft.world.portal.PortalShape$Frame")
 public abstract class PortalShapeMixin {
     @Redirect(
-        method = "method_33574", // Frame validation method
+        method = "isValidFrameBlock",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/class_2680;method_11646(Lnet/minecraft/class_2248;)Z" // BlockState.isOf
+            target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"
         )
     )
     private boolean allowCryingObsidian(BlockState state, Block block) {
