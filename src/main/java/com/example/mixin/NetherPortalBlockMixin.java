@@ -3,8 +3,8 @@ package com.example.mixin;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NetherPortalBlock;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class NetherPortalBlockMixin {
 
     @Inject(
-        method = "method_60990", // this is the real method name in 1.21.5
+        method = "method_60990", // portal creation method in 1.21.5
         at = @At("HEAD"),
         cancellable = true
     )
     private static void obsicry$allowMixedPortalFrame(
-        World world,
+        ServerWorld world,
         BlockState state,
         BlockPos pos,
         CallbackInfoReturnable<Boolean> cir
