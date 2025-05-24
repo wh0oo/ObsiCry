@@ -13,20 +13,25 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public abstract class NetherPortalBlockMixin {
 
     @ModifyVariable(
-        method = "trySpawnPortal",
+        method = "method_60990", // Obfuscated name of portal-creation method in 1.21.5
         at = @At(value = "STORE"),
         ordinal = 0
     )
-    private static boolean allowCryingObsidian(boolean original, World world, BlockPos pos) {
+    private static boolean allowCryingObsidian(
+        boolean original,
+        World world,
+        BlockState state,
+        BlockPos pos
+    ) {
         if (original) return true;
 
-        // Try checking for crying obsidian manually
+        // Scan surrounding blocks for Crying Obsidian
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 for (int dy = -1; dy <= 4; dy++) {
                     BlockPos checkPos = pos.add(dx, dy, dz);
-                    BlockState state = world.getBlockState(checkPos);
-                    if (state.isOf(Blocks.CRYING_OBSIDIAN)) {
+                    BlockState checkState = world.getBlockState(checkPos);
+                    if (checkState.isOf(Blocks.CRYING_OBSIDIAN)) {
                         return true;
                     }
                 }
