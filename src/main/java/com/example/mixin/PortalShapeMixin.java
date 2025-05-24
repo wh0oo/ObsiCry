@@ -3,11 +3,12 @@ package com.example.mixin;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.world.PortalShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "net.minecraft.world.portal.PortalShape$Frame")
+@Mixin(PortalShape.class)
 public abstract class PortalShapeMixin {
     @Redirect(
         method = "isValidFrameBlock",
