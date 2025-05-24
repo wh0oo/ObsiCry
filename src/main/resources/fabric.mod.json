@@ -3,7 +3,7 @@
   "id": "obsicry",
   "version": "${version}",
   "name": "ObsiCry",
-  "description": "Allows Nether portals to be built with crying obsidian.",
+  "description": "Allows Nether portals to be built with any mix of obsidian and crying obsidian.",
   "authors": ["wh0oo"],
   "contact": {
     "homepage": "https://github.com/wh0oo/ObsiCry",
@@ -17,6 +17,9 @@
       "com.example.obsicry.ObsiCryInitializer"
     ]
   },
+  "mixins": [
+    "obsicry.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.16.10",
     "minecraft": "=1.21.5",
