@@ -3,9 +3,10 @@
   "package": "com.example.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "NetherPortalBlockMixin"
+    "PortalShapeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   }
 }
+
