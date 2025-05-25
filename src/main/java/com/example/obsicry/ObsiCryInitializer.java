@@ -6,7 +6,9 @@ import net.fabricmc.api.ModInitializer;
 public class ObsiCryInitializer implements ModInitializer {
     @Override
     public void onInitialize() {
-        // Initialize MixinExtras so that its annotations work correctly
-        MixinExtrasBootstrap.initialize();
+        // Initialize MixinExtras (required for @ModifyReturnValue to work)
+        MixinExtrasBootstrap.init();
+
+        // You can add other initialization code here if needed
     }
 }
