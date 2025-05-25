@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.10.5'
+    id 'com.github.llamalad7.mixinextras' version '0.3.2'
     id 'maven-publish'
 }
 
@@ -22,9 +23,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // MixinExtras from JitPack
-    implementation 'com.github.LlamaLad7:MixinExtras:0.2.0-beta.6'
-    annotationProcessor 'com.github.LlamaLad7:MixinExtras:0.2.0-beta.6'
+    // MixinExtras updated
+    modImplementation 'com.github.LlamaLad7:MixinExtras:0.3.2'
 }
 
 loom {
@@ -35,6 +35,10 @@ loom {
             sourceSet sourceSets.main
         }
     }
+}
+
+mixin {
+    add sourceSets.main, "obsicry.mixins.json"
 }
 
 processResources {
@@ -68,6 +72,6 @@ publishing {
         }
     }
     repositories {
-        // optional: configure publishing targets
+        // optional
     }
 }
