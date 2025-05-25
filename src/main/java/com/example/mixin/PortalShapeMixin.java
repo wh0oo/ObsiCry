@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(NetherPortal.class)
 public abstract class PortalShapeMixin {
 
-    @ModifyReturnValue(method = "isValidFrameBlock", at = @At("RETURN"))
-    private static boolean obsicry$allowCryingObsidian(boolean original, @Local(argsOnly = true) BlockState state) {
+    @ModifyReturnValue(method = "method_30487", at = @At("RETURN"), remap = false)
+    private static boolean allowCryingObsidian(boolean original, @Local(argsOnly = true) BlockState state) {
         return original || state.isOf(Blocks.CRYING_OBSIDIAN);
     }
 }
