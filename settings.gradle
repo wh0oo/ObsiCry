@@ -1,14 +1,10 @@
 pluginManagement {
     repositories {
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
-        maven {
-            name = 'MixinExtras'
-            url = 'https://jitpack.io'
-        }
-        mavenCentral()
+        maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://jitpack.io' }
         gradlePluginPortal()
+    }
+    plugins {
+        id 'com.github.llamalad7.mixinextras' version '0.3.2'
     }
 }
