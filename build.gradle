@@ -13,7 +13,7 @@ base {
 
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = 'https://jitpack.io' } // for MixinExtras
+    maven { url = 'https://jitpack.io' }
     mavenCentral()
 }
 
@@ -23,8 +23,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // MixinExtras updated
-    modImplementation 'com.github.LlamaLad7:MixinExtras:0.3.2'
+    implementation 'com.github.LlamaLad7:MixinExtras:0.3.2'
+    annotationProcessor 'com.github.LlamaLad7:MixinExtras:0.3.2'
 }
 
 loom {
@@ -35,10 +35,11 @@ loom {
             sourceSet sourceSets.main
         }
     }
-}
 
-mixin {
-    add sourceSets.main, "obsicry.mixins.json"
+    mixin {
+        defaultRefmapName = "obsicry-refmap.json"
+        useMixinAp = true
+    }
 }
 
 processResources {
@@ -70,8 +71,5 @@ publishing {
             artifactId = project.archives_base_name
             from components.java
         }
-    }
-    repositories {
-        // optional
     }
 }
