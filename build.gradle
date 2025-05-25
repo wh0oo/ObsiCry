@@ -1,24 +1,29 @@
 plugins {
     id 'fabric-loom' version '1.10.5'
     id 'maven-publish'
+    id 'com.github.llamalad7.mixinextras' version '0.2.0-beta.6'
 }
 
 version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name  // Use the property from gradle.properties
+    archivesName = project.archives_base_name
 }
 
 repositories {
-    // Add repositories for other mod dependencies here
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    mavenCentral()
 }
 
 loom {
     splitEnvironmentSourceSets()
 
     mods {
-        create("obsicry") {  // Explicitly create the mod configuration
+        create("obsicry") {
             sourceSet sourceSets.main
         }
     }
@@ -29,6 +34,14 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // MixinExtras
+    annotationProcessor("com.github.llamalad7:mixinextras-fabric:0.2.0-beta.6")
+    implementation("com.github.llamalad7:mixinextras-fabric:0.2.0-beta.6")
+}
+
+mixinExtras {
+    add = true
 }
 
 processResources {
@@ -50,7 +63,7 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.base.archivesName.get()}"}
+        rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
 
@@ -62,6 +75,6 @@ publishing {
         }
     }
     repositories {
-        // Add Maven publishing targets if needed
+        // Add Maven publishing targets here if needed
     }
 }
