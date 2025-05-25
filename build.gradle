@@ -1,6 +1,5 @@
 plugins {
     id 'fabric-loom' version '1.10.5'
-    id 'com.github.llamalad7.mixinextras' version '0.3.2'
     id 'maven-publish'
 }
 
@@ -12,9 +11,9 @@ base {
 }
 
 repositories {
+    mavenCentral()
     maven { url = 'https://maven.fabricmc.net/' }
     maven { url = 'https://jitpack.io' }
-    mavenCentral()
 }
 
 dependencies {
@@ -23,8 +22,9 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    implementation 'com.github.LlamaLad7:MixinExtras:0.3.2'
-    annotationProcessor 'com.github.LlamaLad7:MixinExtras:0.3.2'
+    // MixinExtras (as a library, not plugin)
+    implementation 'io.github.llamalad7:mixinextras-fabric:0.4.1'
+    annotationProcessor 'io.github.llamalad7:mixinextras-fabric:0.4.1'
 }
 
 loom {
@@ -34,11 +34,6 @@ loom {
         create("obsicry") {
             sourceSet sourceSets.main
         }
-    }
-
-    mixin {
-        defaultRefmapName = "obsicry-refmap.json"
-        useMixinAp = true
     }
 }
 
