@@ -7,11 +7,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(targets = "net.minecraft.class_5518")
+@Mixin(targets = "net.minecraft.class_7420")
 public abstract class PortalShapeMixin {
 
     @Redirect(
-        method = "method_30485",
+        method = "method_48210", // placePortal
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"
