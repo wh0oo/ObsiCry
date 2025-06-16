@@ -1,4 +1,4 @@
-# ObsiCry (Minecraft 1.21.5 only)
+# ObsiCry
 
 **ObsiCry** is a simple Minecraft Fabric mod that allows Nether portals to be built using any mix of **obsidian** and **crying obsidian**.
 
