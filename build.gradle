@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10.5'
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
     id 'maven-publish'
 }
 
@@ -18,11 +18,12 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    mappings loom.officialMojangMappings()
 
-    // MixinExtras (as a library, not plugin)
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:${project.fabric_version}"
+
+    // MixinExtras
     implementation 'io.github.llamalad7:mixinextras-fabric:0.4.1'
     annotationProcessor 'io.github.llamalad7:mixinextras-fabric:0.4.1'
 }
@@ -31,7 +32,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        create("obsicry") {
+        "obsicry" {
             sourceSet sourceSets.main
         }
     }
@@ -39,6 +40,7 @@ loom {
 
 processResources {
     inputs.property "version", project.version
+
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
@@ -55,14 +57,16 @@ java {
 }
 
 jar {
+    inputs.property "archivesName", project.base.archivesName
+
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
+        rename { "${it}_${inputs.properties.archivesName}" }
     }
 }
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        create("mavenJava", MavenPublication) {
             artifactId = project.archives_base_name
             from components.java
         }
